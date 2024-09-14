@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./QRCodeReader.css";
 
 const QRCodeReader = () => {
-  const [result, setResult] = useState<string | null>(null);
+  const [results, setResults] = useState<string[]>([]);
   
   useEffect(() => {
         const html5QrcodeScanner = new Html5QrcodeScanner(
@@ -13,7 +13,7 @@ const QRCodeReader = () => {
         );
     
         const onSucess = (decodedText: string) => {
-            setResult(decodedText);
+            setResults([...results, decodedText]);
             console.log(decodedText);
         };
     
@@ -27,7 +27,14 @@ const QRCodeReader = () => {
     <>
         <div className="qr-reader-container">
         <div id="reader" className="qr-reader-renderer"></div>
-            <p>{result}</p>
+            <div className="qr-reader-results">
+                <h2>Results</h2>
+                <ul>
+                {results.map((result, index) => (
+                    <li key={index}>{result}</li>
+                ))}
+                </ul>
+            </div>
         </div>
         
     </>
