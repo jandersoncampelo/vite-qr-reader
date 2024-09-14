@@ -13,7 +13,7 @@ const QRCodeReader = () => {
         );
     
         const onSucess = (decodedText: string) => {
-            setResults([...results, decodedText]);
+            setResults((prevResults) => [...prevResults, decodedText]);
             console.log(decodedText);
         };
     
@@ -23,6 +23,7 @@ const QRCodeReader = () => {
     
         html5QrcodeScanner.render(onSucess, onFailure);
   }, []);
+
   return (
     <>
         <div className="qr-reader-container">
