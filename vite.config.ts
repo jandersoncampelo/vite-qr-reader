@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'https://jandersoncampelo.github.io/vite-qr-reader/',
+  base: '/vite-qr-reader/',
   server: {
     host:true
   },
