@@ -2,7 +2,7 @@ import './App.css'
 import QRCodeReader from './components/QRCodeReader'
 
 function App() {
-  const onNewScanResult = (decodedText: string, decodedResult: undefined) => {
+  const onNewScanResult = (decodedText: string, decodedResult: unknown) => {
     console.log(decodedText, decodedResult)
 };
 

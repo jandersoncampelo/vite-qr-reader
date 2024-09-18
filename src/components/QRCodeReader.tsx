@@ -1,11 +1,27 @@
 import { Html5QrcodeScanner } from "html5-qrcode";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./QRCodeReader.css";
 
 const qrcodeRegionId = "html5qr-code-full-region";
 
-const createConfig = (props) => {
-    let config = {};
+interface QRCodeReaderProps {
+    fps?: number;
+    qrbox?: number;
+    aspectRatio?: number;
+    disableFlip?: boolean;
+    verbose?: boolean;
+    qrCodeSuccessCallback: (decodedText: string, result: unknown) => void;
+    qrCodeErrorCallback?: (errorMessage: string) => void;
+}
+
+const createConfig = (props: QRCodeReaderProps) => {
+    const config = {
+        fps: 10,
+        qrbox: 250,
+        aspectRatio: 1.0,
+        disableFlip: false
+    };
+    
     if (props.fps) {
         config.fps = props.fps;
     }
@@ -21,7 +37,7 @@ const createConfig = (props) => {
     return config;
 };
 
-const QRCodeReader = (props) => {
+const QRCodeReader = (props: QRCodeReaderProps) => {
     useEffect(() => {
         // when component mounts
         const config = createConfig(props);
@@ -39,7 +55,7 @@ const QRCodeReader = (props) => {
                 console.error("Failed to clear html5QrcodeScanner. ", error);
             });
         };
-    }, []);
+    }, [props]);
 
     return (
         <div id={qrcodeRegionId} />
@@ -47,24 +63,3 @@ const QRCodeReader = (props) => {
 };
 
 export default QRCodeReader;
-
-/*** Gerado pelo Copilot ***/
-/**
-    const handleScan = () => {
-        if (videoRef.current) {
-            const video = videoRef.current;
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            if (context) {
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-                const code = jsQR(imageData.data, imageData.width, imageData.height);
-                if (code) {
-                    setResult(code.data);
-                }
-            }
-        }
-    };
- */
