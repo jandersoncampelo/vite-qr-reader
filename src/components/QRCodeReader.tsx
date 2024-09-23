@@ -7,7 +7,6 @@ const qrcodeRegionId = "html5qr-code-full-region";
 interface QRCodeReaderProps {
     fps?: number;
     qrbox?: { width: number, height: number };
-    aspectRatio?: number;
     disableFlip?: boolean;
     verbose?: boolean;
     qrCodeSuccessCallback: (decodedText: string, result: unknown) => void;
@@ -18,7 +17,6 @@ const createConfig = (props: QRCodeReaderProps) => {
     const config = {
         fps: 10,
         qrbox: { width: 250, height: 250 },
-        aspectRatio: 1.0,
         disableFlip: false
     };
     
@@ -27,9 +25,6 @@ const createConfig = (props: QRCodeReaderProps) => {
     }
     if (props.qrbox) {
         config.qrbox = props.qrbox;
-    }
-    if (props.aspectRatio) {
-        config.aspectRatio = props.aspectRatio;
     }
     if (props.disableFlip !== undefined) {
         config.disableFlip = props.disableFlip;
