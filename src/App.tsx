@@ -9,7 +9,6 @@ function App() {
   return (
     <QRCodeReader
       fps={10}
-      qrbox={250}
       disableFlip={false}
       qrCodeSuccessCallback={onNewScanResult}
     />
