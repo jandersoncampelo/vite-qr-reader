@@ -28,9 +28,6 @@ const createConfig = (props: QRCodeReaderProps) => {
     if (props.qrbox) {
         config.qrbox = props.qrbox;
     }
-    if (props.aspectRatio) {
-        config.aspectRatio = props.aspectRatio;
-    }
     if (props.disableFlip !== undefined) {
         config.disableFlip = props.disableFlip;
     }
@@ -58,7 +55,9 @@ const QRCodeReader = (props: QRCodeReaderProps) => {
     }, [props]);
 
     return (
-        <div id={qrcodeRegionId} />
+        <div className="qr-reader-container">
+            <div id={qrcodeRegionId} className="qr-reader-renderer"/>
+        </div>
     );
 };
 
